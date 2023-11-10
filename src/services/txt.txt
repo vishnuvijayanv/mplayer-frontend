@@ -1,0 +1,12 @@
+
+  // to delete a singel category details
+    //  const removeCVideo = async(cid,categoryID)=>{
+  //     console.log(cid);
+  //     const selectCategory1 =categories.map(item=>item.allVideo.find(citem=>citem.id==cid))
+  //     const{data} = await getAllCategories()
+  //     console.log(data);
+  //     console.log(selectCategory1);
+  //    await deleteACategory(cid)
+  //    allCategory()
+
+  //    }
