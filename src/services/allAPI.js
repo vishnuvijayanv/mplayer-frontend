@@ -78,10 +78,10 @@ export const updateCategory = async(id,body)=>{
 //API to delete a category details
 
 
-export const deleteACategory = async(id,cid)=>{
-   return await commonAPI('DELETE',`${serverURL}/categories/${id}/${cid}`,{})
-}
-
+export const updateACategory = async(id,body)=>{
+   return await commonAPI('PUT',`${serverURL}/categories/${id}`,body)
+ }
+ 
 
 
 

@@ -36,23 +36,10 @@ console.log(timestamp);
     e.dataTransfer.setData("videoId",id)
   }
 
-  const videoDrop = async(e,categoryID)=>{
-    console.log(`dropped on the category Id :${categoryID}`);
-    let videoID = e.dataTransfer.getData("videoId")
-   //to get the data from videocard
-   console.log(videoID);
-   const selectCategory = categories.find(item=>item.id===categoryID)
-   console.log(selectCategory);
-   await deleteACategory(categoryID,id)
-  
-  }
-   //function to prevent reload so that the data we send wont lost
-   const dragOver= (e)=>{
-    e.preventDefault()
-  }
+
 
   return (
-    <div droppable onDragOver={(e)=>dragOver(e)} onDrop={(e)=>videoDrop(e,displayVideo?.id)}>
+    <div >
         <Card className='mb-5 ' style={{ width: '220px',height:'300px'}} draggable onDragStart={(e)=>cardDrag(e,displayVideo?.id)} >
         <Card.Img variant="top" onClick={handleShow} style={{height:'230px'}} src={displayVideo.url} />
         <Card.Body>
@@ -60,7 +47,7 @@ console.log(timestamp);
            {displayVideo.caption}
            {!ispresent?
             <button onClick={()=>removeVideo(displayVideo?.id)} style={{float:'right'}} className='btn btn-danger  '><i class="fa-solid fa-trash"></i></button>:
-            <button onClick={()=>removeCVideo(displayVideo?.id)} style={{float:'right'}} className='btn btn-warning  '><i class="fa-solid fa-trash"></i></button>
+            <button onClick={removeCVideo} style={{float:'right'}} className='btn btn-warning  '><i class="fa-solid fa-trash"></i></button>
            }
           </Card.Text>
         </Card.Body>

@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
-import { addAllCategory, deleteACategories, getAVideo, getAllCategories, updateCategory,deleteACategory} from '../services/allAPI';
+import { addAllCategory, deleteACategories, getAVideo, getAllCategories, updateCategory,updateACategory} from '../services/allAPI';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import ViewCard from './ViewCard';
@@ -81,12 +81,25 @@ function Category() {
 
 
 
-     const cardDrag = (e,id)=>{
-      console.log(`id is ${id}`);
-      // to send data
-      e.dataTransfer.setData("videoId",id)
-    }
-  
+    
+  // to delete a singel category details
+     const removeCVideo = async(cid,categoryID)=>{
+      console.log(cid,'img');
+      console.log(categoryID,'cst');
+      const A = categories.map(item=>item)
+      const cname = A[categoryID-1]
+      console.log(cname);
+      const selectCategory1 =categories.findIndex(item=>item)
+      console.log(selectCategory1);
+      console.log(cname.allVideo);
+      // const k= cname.allVideo[selectCategory1]=[]
+      console.log(cname.allVideo.splice(cid,1));
+     console.log(cname);
+    await updateACategory(categoryID,cname)
+
+
+      allCategory()
+     }
   useEffect(()=>{
     allCategory()
   },[])
@@ -104,10 +117,10 @@ function Category() {
             <button onClick={()=>deleteCategory(item?.id)} style={{float:'right'}} className='btn btn-danger  '><i class="fa-solid fa-trash"></i></button>
           </div>
           <Row>
-            <Col draggable onDragStart={(e)=>cardDrag(e,item?.id)}>
+            <Col >
            {
             item?.allVideo?.length>0?
-            item.allVideo.map((card)=>(<ViewCard displayVideo={card} ispresent='true' id={item.id} />)):
+            item?.allVideo?.map((card,index)=>(<ViewCard displayVideo={card} ispresent='true' removeCVideo={(e)=>removeCVideo(index,item?.id)}/>)):
             <p>Nothing to display</p>
            }
             </Col>
